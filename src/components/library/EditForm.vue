@@ -47,60 +47,60 @@
 </template>
 
 <script>
-  export default {
-    name: 'EditForm',
-    data () {
-      return {
-        dialogFormVisible: false,
-        form: {
+export default {
+  name: 'EditForm',
+  data () {
+    return {
+      dialogFormVisible: false,
+      form: {
+        id: '',
+        title: '',
+        author: '',
+        date: '',
+        press: '',
+        cover: '',
+        abs: '',
+        category: {
           id: '',
-          title: '',
-          author: '',
-          date: '',
-          press: '',
-          cover: '',
-          abs: '',
-          category: {
-            id: '',
-            name: ''
-          }
-        },
-        formLabelWidth: '120px'
-      }
-    },
-    methods: {
-      clear () {
-        this.form = {
-          id: '',
-          title: '',
-          author: '',
-          date: '',
-          press: '',
-          cover: '',
-          abs: '',
-          category: ''
+          name: ''
         }
       },
-      onSubmit () {
-        this.$axios
-          .post('/books', {
-            id: this.form.id,
-            cover: this.form.cover,
-            title: this.form.title,
-            author: this.form.author,
-            date: this.form.date,
-            press: this.form.press,
-            abs: this.form.abs,
-            category: this.form.category
-          }).then(resp => {
+      formLabelWidth: '120px'
+    }
+  },
+  methods: {
+    clear () {
+      this.form = {
+        id: '',
+        title: '',
+        author: '',
+        date: '',
+        press: '',
+        cover: '',
+        abs: '',
+        category: ''
+      }
+    },
+    onSubmit () {
+      this.$axios
+        .post('/books', {
+          id: this.form.id,
+          cover: this.form.cover,
+          title: this.form.title,
+          author: this.form.author,
+          date: this.form.date,
+          press: this.form.press,
+          abs: this.form.abs,
+          category: this.form.category
+        }).then(resp => {
           if (resp && resp.status === 200) {
             this.dialogFormVisible = false
             this.$emit('onSubmit')
           }
         })
-      }
     }
   }
+}
 </script>
 
 <style scoped>
@@ -111,5 +111,3 @@
     cursor: pointer;
   }
 </style>
-
-

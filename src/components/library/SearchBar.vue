@@ -13,24 +13,34 @@
 </template>
 
 <script>
-  export default {
-    name: 'SearchBar',
-    data () {
-      return {
-        keywords: '',
-        books: [],
-        cardLoading: []
-      }
+export default {
+  name: 'SearchBar',
+  data () {
+    return {
+      keywords: '',
+      books: [],
+      cardLoading: []
+    }
+  },
+  methods: {
+    searchClick () {
+      this.$emit('onSearch')
     },
-    methods: {
-      searchClick () {
-        this.$emit('onSearch')
-      }
+    searchResult () {
+      var _this = this
+      this.$axios
+        .post('/search', {
+          keywords: this.$refs.searchBar.keywords
+        }).then(resp => {
+          if (resp && resp.status === 200) {
+            _this.books = resp.data
+          }
+        })
     }
   }
+}
 </script>
 
 <style scoped>
 
 </style>
-
