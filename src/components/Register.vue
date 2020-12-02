@@ -30,55 +30,55 @@
   </body>
 </template>
 <script>
-  export default{
-    data () {
-      return {
-        rules: {
-          username: [{required: true, message: '用户名不能为空', trigger: 'blur'}],
-          password: [{required: true, message: '密码不能为空', trigger: 'blur'}]
-        },
-        checked: true,
-        registerForm: {
-          username: '',
-          password: '',
-          name: '',
-          phone: '',
-          email: ''
-        },
-        loading: false
-      }
-    },
-    methods: {
-      submitForm(formName) {
-        this.$refs[formName].validate((valid) => {
-          if (valid) {
-            var _this = this
-            this.$axios
-              .post('/register', {
-                username: this.registerForm.username,
-                password: this.registerForm.password,
-                name: this.registerForm.name,
-                phone: this.registerForm.phone,
-                email: this.registerForm.email
-              }).then(response => {
-                if (response.data.code === 200) {
-                  this.$alert('注册成功', '提示', {
-                    confirmButtonText: '确定'
-                  })
-                  _this.$router.replace('/login')
-                } else {
-                  this.$alert(response.data.message, '提示', {
-                    confirmButtonText: '确定'
-                  })
-                }
-              }).catch(failResponse => {})
-          } else {
-            return false;
-          }
-        });
-      }
+export default{
+  data () {
+    return {
+      rules: {
+        username: [{required: true, message: '用户名不能为空', trigger: 'blur'}],
+        password: [{required: true, message: '密码不能为空', trigger: 'blur'}]
+      },
+      checked: true,
+      registerForm: {
+        username: '',
+        password: '',
+        name: '',
+        phone: '',
+        email: ''
+      },
+      loading: false
+    }
+  },
+  methods: {
+    submitForm (formName) {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          var _this = this
+          this.$axios
+            .post('/register', {
+              username: this.registerForm.username,
+              password: this.registerForm.password,
+              name: this.registerForm.name,
+              phone: this.registerForm.phone,
+              email: this.registerForm.email
+            }).then(response => {
+              if (response.data.code === 200) {
+                this.$alert('注册成功', '提示', {
+                  confirmButtonText: '确定'
+                })
+                _this.$router.replace('/login')
+              } else {
+                this.$alert(response.data.message, '提示', {
+                  confirmButtonText: '确定'
+                })
+              }
+            }).catch(failResponse => {})
+        } else {
+          return false
+        }
+      })
     }
   }
+}
 </script>
 <style>
   #paper {

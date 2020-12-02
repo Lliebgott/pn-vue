@@ -14,23 +14,24 @@ Vue.config.productionTip = false
 Vue.use(ElementUI)
 
 router.beforeEach((to, from, next) => {
-    if (to.meta.requireAuth) {
-      if (store.state.user.username) {
-        axios.get('/authentication').then(resp => {
-          if (resp) next()
-        })
-      } else {
-        next({
-          path: 'login',
-          query: {redirect: to.fullPath}
-        })
-      }
+  if (to.meta.requireAuth) {
+    debugger
+    console.log(store.state.user.username)
+    if (store.state.user.username) {
+      axios.get('/authentication').then(resp => {
+        if (resp) next()
+      })
     } else {
-      next()
+      next({
+        path: 'login',
+        query: {redirect: to.fullPath}
+      })
     }
+  } else {
+    next()
   }
+}
 )
-
 
 /* eslint-disable no-new */
 new Vue({
@@ -41,4 +42,3 @@ new Vue({
   components: { App },
   template: '<App/>'
 })
-

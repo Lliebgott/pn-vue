@@ -57,7 +57,7 @@ export default {
         })
     },
     register () {
-      this.$router.push({ path:'/Register'  })
+      this.$router.push({ path: '/Register' })
     }
   }
 }
@@ -71,17 +71,17 @@ export default {
     width: 100%;
     background-size: cover;
     position: fixed;
+    margin: -10px !important;
   }
   .login-container {
     border-radius: 15px;
     background-clip: padding-box;
-    margin: 200px auto;
-    width: 350px;
+    margin: 200px auto auto 200px;
+    width: 300px;
     padding: 35px 35px 15px 35px;
     background: #fff;
     border: 1px solid #eaeaea;
     box-shadow: 0 0 25px #cac6c6;
-    margin-left: 1300px;
   }
   .login_title {
     margin: 0px auto 40px auto;

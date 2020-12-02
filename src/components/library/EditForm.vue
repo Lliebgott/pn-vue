@@ -51,7 +51,7 @@
 import ImgUpload from './ImgUpload'
 export default {
   name: 'EditForm',
-  components: {ImgUpload},//导入时还要加入这一行代码
+  components: {ImgUpload}, // 导入时还要加入这一行代码
   data () {
     return {
       dialogFormVisible: false,
