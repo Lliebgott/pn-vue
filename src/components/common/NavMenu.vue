@@ -11,7 +11,7 @@
       <el-menu-item v-for="(item,i) in navList" :key="i" :index="item.name">
         {{ item.navItem }}
       </el-menu-item>
-      <span style="position: absolute;padding-top: 20px;right: 43%;font-size: 20px;font-weight: bold">White Jotter - Your Mind Palace</span>
+      <span style="position: absolute;padding-top: 20px;right: 43%;font-size: 20px;font-weight: bold">Personal Note</span>
       <i class="el-icon-switch-button" title="退出" v-on:click="logout" style="float:right;font-size: 40px;color: #222;padding: 10px"></i>
     </el-menu>
   </div>
