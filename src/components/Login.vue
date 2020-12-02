@@ -11,8 +11,9 @@
       <el-input type="password" v-model="loginForm.password"
                 auto-complete="off" placeholder="密码"></el-input>
     </el-form-item>
-    <el-form-item style="width: 100%">
-      <el-button type="primary" style="width: 100%;background: #505458;border: none" v-on:click="login">登录</el-button>
+    <el-form-item>
+      <el-button type="primary"  v-on:click="login">登录</el-button>
+      <el-button type="primary" v-on:click="register()">注册</el-button>
     </el-form-item>
   </el-form>
   </body>
@@ -25,8 +26,8 @@ export default {
   data () {
     return {
       loginForm: {
-        username: 'admin',
-        password: '123'
+        username: '',
+        password: ''
       },
       responseResult: []
     }
@@ -40,16 +41,23 @@ export default {
           username: this.loginForm.username,
           password: this.loginForm.password
         })
-        .then(successResponse => {
-          if (successResponse.data.code === 200) {
+        .then(response => {
+          if (response.data.code === 200) {
             // var data = this.loginForm
             _this.$store.commit('login', _this.loginForm)
             var path = this.$route.query.redirect
             this.$router.replace({path: path === '/' || path === undefined ? '/index' : path})
+          } else {
+            this.$alert(response.data.message, '提示', {
+              confirmButtonText: '确定'
+            })
           }
         })
         .catch(failResponse => {
         })
+    },
+    register () {
+      this.$router.push({ path:'/Register'  })
     }
   }
 }
@@ -64,18 +72,16 @@ export default {
     background-size: cover;
     position: fixed;
   }
-  body{
-    margin: 0px;
-  }
   .login-container {
     border-radius: 15px;
     background-clip: padding-box;
-    margin: 90px auto;
+    margin: 200px auto;
     width: 350px;
     padding: 35px 35px 15px 35px;
     background: #fff;
     border: 1px solid #eaeaea;
     box-shadow: 0 0 25px #cac6c6;
+    margin-left: 1300px;
   }
   .login_title {
     margin: 0px auto 40px auto;
