@@ -103,6 +103,7 @@ export default {
         })
     },
     uploadImg () {
+      console.log(this.$refs.imgUpload.url)
       this.form.cover = this.$refs.imgUpload.url
     }
   }
