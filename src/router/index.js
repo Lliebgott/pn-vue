@@ -5,6 +5,7 @@ import Login from '../components/Login'
 import Register from '../components/Register'
 import Home from '../components/Home'
 import LibraryIndex from '../components/library/LibraryIndex'
+import LeftMenu from '../components/admin/LeftMenu'
 
 Vue.use(Router)
 
@@ -30,18 +31,17 @@ export default new Router({
         {
           path: '/index',
           name: 'AppIndex',
-          component: AppIndex,
-          meta: {
-            requireAuth: true
-          }
+          component: AppIndex
         },
         {
           path: '/library',
           name: 'Library',
           component: LibraryIndex,
-          meta: {
-            requireAuth: true
-          }
+        },
+        {
+          path: '/admin',
+          name: 'Admin',
+          component: LeftMenu
         }
       ]
     },
